@@ -87,9 +87,9 @@ Function Get-MyTeamsInformation
     } elseif ($Expanded) {
         If ($EnabledWithPhoneOnly)
         {
-            $data = Get-CsOnlineUser -Filter {EnterpriseVoiceEnabled -eq $true -and LineURI -ne $null} | Select-Object DisplayName,UserPrincipalName,LineURI,TenantDialPlan,CallingLineIdentity,OnlineVoiceRoutingPolicy
+            $data = Get-CsOnlineUser -Filter {EnterpriseVoiceEnabled -eq $true -and LineURI -ne $null} | Select-Object DisplayName,UserPrincipalName,IsSIPEnabled,EnterpriseVoiceEnabled,LineURI,TenantDialPlan,CallingLineIdentity,OnlineVoiceRoutingPolicy
         } else {
-            $data = Get-CsOnlineUser | Select-Object DisplayName,UserPrincipalName,LineURI,TenantDialPlan,CallingLineIdentity,OnlineVoiceRoutingPolicy
+            $data = Get-CsOnlineUser | Select-Object DisplayName,UserPrincipalName,IsSIPEnabled,EnterpriseVoiceEnabled,LineURI,TenantDialPlan,CallingLineIdentity,OnlineVoiceRoutingPolicy
         }
     } else {
         #Basic
