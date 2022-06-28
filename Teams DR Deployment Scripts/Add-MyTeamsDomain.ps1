@@ -1,9 +1,18 @@
 ## Add Customer Domains
 Function Add-MyTeamsDomain
 {
-    param($CustomerTrunkPrefix)
+    param($CustomerTrunkPrefix,[Parameter(DontShow)][switch]$OverridePrefixReq)
 
     Read-Host "Must be connected via both Connect-MSOLService and Connect-MicrosoftTeams. Press Enter to continue"
+
+    Do
+    {
+        if (!$CustomerTrunkPrefix -and !$OverridePrefixReq)
+        {
+            Write-Host "You did not input a customer prefix trunk. Input the first part of the FQDNs you were provided. Example: SBC-Customer1.las.myteamsuc.com >> you would enter SBC-Customer1"
+            $CustomerTrunkPrefix = Read-Host
+        }
+    } until ($CustomerTrunkPrefix -or $OverridePrefixReq)
 
     #set variables
     $tenantID = (Get-CsTenant).TenantID

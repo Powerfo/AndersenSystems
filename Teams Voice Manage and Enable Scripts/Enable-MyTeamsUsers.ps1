@@ -347,7 +347,7 @@ Function Enable-MyTeamsUsers
 						#>
 						$checkApproved = $true
 						}
-					Set-CsOnlineApplicationInstance -Identity $importeduser.UPN -OnpremPhoneNumber "1$($importeduser.PhoneNumber)"
+					Set-CsPhoneNumberAssignment -Identity $importeduser.UPN -PhoneNumber "+1$($importeduser.PhoneNumber)" -PhoneNumberType DirectRouting
 					}
 				else 
 					{
